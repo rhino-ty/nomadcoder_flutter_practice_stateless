@@ -13,7 +13,6 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   int counter = 0;
-  List<int> numbers = [];
   bool showTitle = true;
 
   void toggleTitle() {
@@ -22,15 +21,15 @@ class _AppState extends State<App> {
     });
   }
 
-  void onClicked() {
+  void onClickedPlus() {
     setState(() {
-      counter = counter + 1;
+      counter++;
     });
   }
 
-  void onClicked2() {
+  void onClickedMinus() {
     setState(() {
-      numbers.add(numbers.length);
+      counter--;
     });
   }
 
@@ -40,7 +39,7 @@ class _AppState extends State<App> {
       theme: ThemeData(
         textTheme: const TextTheme(
           titleLarge: TextStyle(
-            color: Colors.red,
+            color: Colors.purple,
           ),
         ),
       ),
@@ -53,8 +52,9 @@ class _AppState extends State<App> {
             ),
             child: Column(
               children: [
+                const SizedBox(height: 100),
                 Container(
-                  color: Colors.amber[100],
+                  color: Colors.blue[100],
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Row(
@@ -71,10 +71,19 @@ class _AppState extends State<App> {
                               '$counter',
                               style: const TextStyle(fontSize: 30),
                             ),
-                            IconButton(
-                              iconSize: 40,
-                              onPressed: onClicked,
-                              icon: const Icon(Icons.add_box_rounded),
+                            Row(
+                              children: [
+                                IconButton(
+                                  iconSize: 40,
+                                  onPressed: onClickedPlus,
+                                  icon: const Icon(Icons.add_circle),
+                                ),
+                                IconButton(
+                                  iconSize: 40,
+                                  onPressed: onClickedMinus,
+                                  icon: const Icon(Icons.remove_circle),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -83,33 +92,7 @@ class _AppState extends State<App> {
                   ),
                 ),
                 Container(
-                  color: Colors.amber[200],
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Click Count',
-                              style: TextStyle(fontSize: 30),
-                            ),
-                            for (var n in numbers) Text('$n'),
-                            IconButton(
-                              iconSize: 40,
-                              onPressed: onClicked2,
-                              icon: const Icon(Icons.add_box_rounded),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  color: Colors.amber[300],
+                  color: Colors.blue[300],
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Row(
