@@ -12,11 +12,12 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  int counter = 0;
+  List<int> numbers = [];
 
   void onClicked() {
-    counter = counter + 1;
-    setState(() {});
+    setState(() {
+      numbers.add(numbers.length);
+    });
   }
 
   @override
@@ -29,18 +30,17 @@ class _AppState extends State<App> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                'Click Here!',
+                'Click Count',
                 style: TextStyle(fontSize: 30),
               ),
-              Text(
-                '$counter',
-                style: const TextStyle(fontSize: 30),
-              ),
+              for (var n in numbers) Text('$n'),
               IconButton(
                 iconSize: 40,
                 onPressed: onClicked,
-                icon: const Icon(Icons.add_box_rounded),
-              )
+                icon: const Icon(
+                  Icons.add_box_rounded,
+                ),
+              ),
             ],
           ),
         ),
